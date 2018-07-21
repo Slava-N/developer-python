@@ -1,4 +1,4 @@
-with open('recipe.txt', encoding='utf-8') as document:
+with open('recip.txt', encoding='utf-8') as document:
     menu={}
     for line in document:
         dish = line.strip().lower()
@@ -10,7 +10,6 @@ with open('recipe.txt', encoding='utf-8') as document:
             product_items.append(product_info)
         empty_line = document.readline().strip()
         menu[dish] = product_items
-    print(list(lambda x: x for x in menu))
 
     print('В нашем меню представлены следующие блюда: \n {}'.format(list(menu.keys())))
 
