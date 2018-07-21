@@ -1,7 +1,7 @@
 with open('recipe.txt', encoding='utf-8') as document:
     menu={}
     for line in document:
-        dish = line.strip().lower()
+        dish = line.strip()
         number_of_products = int(document.readline().strip())
         product_items = []
         for product in range(number_of_products):
@@ -10,7 +10,6 @@ with open('recipe.txt', encoding='utf-8') as document:
             product_items.append(product_info)
         empty_line = document.readline().strip()
         menu[dish] = product_items
-
     print('В нашем меню представлены следующие блюда: \n {}'.format(list(menu.keys())))
 
 def get_shop_list_by_dishes(dishes, people_count):
@@ -51,12 +50,11 @@ def create_shop_list(people_count, *order):
 
 
 print('Выберите первое блюдо: ')
-first_dish = input().lower()
+first_dish = input()
 print('Выберите второе блюдо: ')
-second_dish = input().lower()
+second_dish = input()
 print('Выберите третье блюдо: ')
-third_dish = input().lower()
-
+third_dish = input()
 print('На сколько человек?')
 people_count = int(input())
 create_shop_list(people_count, first_dish, second_dish, third_dish)
