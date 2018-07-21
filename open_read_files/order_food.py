@@ -1,4 +1,4 @@
-with open('recip.txt', encoding='utf-8') as document:
+with open('recipe.txt', encoding='utf-8') as document:
     menu={}
     for line in document:
         dish = line.strip().lower()
