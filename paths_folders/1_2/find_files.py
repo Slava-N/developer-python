@@ -15,7 +15,7 @@
 
 # Пример на настоящих данных
 
-# python3 find_procedure.py
+# python3 find_procedure_1.py
 # Введите строку: INSERT
 # ... большой список файлов ...
 # Всего: 301
