@@ -5,18 +5,18 @@ from pprint import pprint
 countries = {
             'newsafr.json' : ['Африка', 'UTF-8'],
             'newscy.json' : ['Кипр', 'KOI8-R'],
-            'newsfr.json' : ['Франция', 'iso8859_5']
-            # 'newsit.json' : ['Италия', 'cp1251']
+            'newsfr.json' : ['Франция', 'iso8859_5'],
+            'newsit.json' : ['Италия', 'cp1251']
             }
 
 def open_read(file_name, country_encoding):
     with open(file_name, encoding = country_encoding) as json_file:
         region = json.load(json_file)
-        new_block = region['rss']['channel']['item']
+        new_block = region['rss']['channel']['items']
         counter = 0
         newslines = ''
         for each in new_block:
-            news_text = each ['description']['__cdata']
+            news_text = each ['description']
             news_text_wo_tags = re.sub("<.*>", "", news_text)
             news_text_clean = re.sub(r'[^\w\s]','', news_text_wo_tags)
             newslines += news_text_clean
