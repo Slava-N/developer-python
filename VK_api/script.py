@@ -27,7 +27,7 @@ class User(object):
         print('User # {0} has been found. Name: {1}, Surname: {2}'.format(self.id, self.name, self.surname))
 
     def __str__(self):
-        return "vk.com/{}".format(self.id)
+        return "vk.com/id{}".format(self.id)
 
     def get_friends(self):
         response = requests.get('https://api.vk.com/method/friends.get', self.params)
@@ -43,5 +43,5 @@ session_1 = Session(access_token, api_ver)
 user_1 = User('1946565', session_1)
 user_2 = User('179095856', session_1)
 
-print(user_1)
+print(user_2)
 user_1 & user_2
