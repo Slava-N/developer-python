@@ -18,7 +18,8 @@ def create_result_folder(folder_name):
         os.makedirs(folder_name)
 
 def narrow_photo(input_photo, output_photo):
-    subprocess.run(['sips', '--resampleWidth', '200', os.path.join(input_photo_folder,input_photo), '--out', os.path.join(output_photo_folder,output_photo)])
+    subprocess.run(['sips', '--resampleWidth', '200', os.path.join(input_photo_folder, input_photo),
+                    '--out', os.path.join(output_photo_folder, output_photo)])
 
 
 def execute_multiple_corrections(files):

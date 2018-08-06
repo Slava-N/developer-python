@@ -35,7 +35,6 @@
 
 # не забываем организовывать собственный код в функции
 
-import glob
 import os.path
 import time
 import re
@@ -57,7 +56,6 @@ def search(files, searched_str):
 def results(search_result):
 	for each_line in search_result:
 		print(each_line)
-		time.sleep(0.01)
 	print('Всего: {}'.format(len(search_result)))
 
 
@@ -65,7 +63,6 @@ if __name__ == '__main__':
     # ваша логика
     while True:
         searched_str = input('Что Вы хотите найти?\n')
-        time.sleep(1)
         search_result = search(files, searched_str)
         results(search_result)
         files = search_result
