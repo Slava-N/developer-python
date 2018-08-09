@@ -12,7 +12,6 @@ class Session(object):
         print('Auth data received')
 
 
-
 class User(object):
 
     def __init__(self, id, session):
