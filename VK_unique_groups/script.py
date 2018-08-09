@@ -103,13 +103,6 @@ if __name__ == '__main__':
     target_friends = target_person.get_friends()
 
     all_users_groups = set()
-
-    # for person in progressbar.progressbar(target_friends):
-    #     time.sleep(1/2.9)
-    #     local_query = Query()
-    #     user_groups = local_query.get_groups(person, session_1)
-    #     all_users_groups.update((user_groups))
-
     execute_query = Query()
 
     for i in progressbar.progressbar(range(0,len(target_friends), 20)):
