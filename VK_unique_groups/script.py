@@ -1,10 +1,16 @@
 import requests
-import token_data
 import time
 import progressbar
 import json
 
-access_token = token_data.token
+try:
+    import token_data
+    access_token = token_data.token
+
+except:
+    access_token = input("Please, enter token:\n")
+
+
 api_ver='5.80'
 
 class Session(object):
@@ -50,8 +56,6 @@ class User(object):
 
 class Query(object):
 
-    def __init__(self):
-        pass
 
     def get_groups(self, person_id, session):
         self.person_id = person_id
@@ -86,10 +90,29 @@ class Query(object):
         self.access_token = session.access_token
         self.api_ver = session.api_ver
         person_bucket = ','.join([str(each) for each in people_list])
+
+        code_execute = """
+                var persons = (Args.person_list).split(",");
+                var group_list = [];
+                var i = 0;
+
+                while (i <persons.length)
+                {var person_groups = API.groups.get(
+                {"user_id":persons[i]});
+                i=i+1;
+                group_list.push(person_groups.items);
+                };
+                return group_list;"""
+
         self.params = dict(access_token=self.access_token,
                            v=self.api_ver,
-                           person_list=person_bucket)
-        response = requests.get('https://api.vk.com/method/execute.get_many_groups', self.params)
+                           person_list=person_bucket,
+                           code=code_execute)
+
+
+
+        response = requests.get('https://api.vk.com/method/execute', self.params)
+        # print(response.url)
         try:
             result = response.json()['response']
         except KeyError:
@@ -113,8 +136,11 @@ if __name__ == '__main__':
         clean_groups_bucket = [each for each in groups_bucket if each != None]
         all_users_groups.update(*clean_groups_bucket)
 
+    time.sleep(2)
+
     unique_groups = target_groups.difference(all_users_groups)
-    print('Unique groups are:\n{}'.format(unique_groups))
+
+    print('\nUnique groups are:\n{}'.format(unique_groups))
     unique_groups_info = Query()
     unique_groups_info_file = unique_groups_info.get_groups_info(session_1, list(unique_groups))
 
